@@ -68,7 +68,7 @@ a ⊽ b = not (a ∨ b)
 (%)   = mod
 
 (∣)   ∷ Integral a ⇒ a → a → Bool
-a ∣ b = a % b == 0
+a ∣ b = a % b ≡ 0
 
 (∤)   ∷ Integral a ⇒ a → a → Bool
 (∤)   = (not ∘) ∘ (∣)
@@ -92,10 +92,10 @@ a ∣ b = a % b == 0
 (∉)   = notElem
 
 (∋)   ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∋)   = flip elem
+(∋)   = flip (∈)
 
 (∌)   ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∌)   = flip notElem
+(∌)   = flip (∉)
 
 (∩)   ∷ Eq a ⇒ [a] → [a] → [a]
 (∩)   = intersect
@@ -113,10 +113,10 @@ a ∣ b = a % b == 0
 (⊇)   = flip isInfixOf
 
 (⊈)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊈)   = (not ∘) ∘ isInfixOf
+(⊈)   = (not ∘) ∘ (⊆)
 
 (⊉)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊉)   = (not ∘) ∘ flip isInfixOf
+(⊉)   = (not ∘) ∘ (⊇)
 
 (⊂)   ∷ Eq a ⇒ [a] → [a] → Bool
 a ⊂ b = (a ⊆ b) ∧ (a ≠ b)
