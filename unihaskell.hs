@@ -2,6 +2,16 @@
 
 import Data.List
 
+infixl 9 ‼
+infixl 7 ×, ÷, %, //
+
+infixr 9 ∘
+infixr 5 ⋅
+infixr 3 ∧, ∨, ∣, ∤
+
+infix 5 ∩, ∪, ∖
+infix 4 ≡, ≢, ≠, ≤, ≥, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
+
 (∧)   ∷ Bool → Bool → Bool
 (∧)   = (&&)
 
@@ -29,6 +39,9 @@ import Data.List
 (÷)   ∷ Fractional a ⇒ a → a → a
 (÷)   = (/)
 
+(//)  ∷ Integral a ⇒ a → a → a
+(//)  = div
+
 (%)   ∷ Integral a ⇒ a → a → a
 (%)   = mod
 
@@ -36,7 +49,7 @@ import Data.List
 a ∣ b = a % b == 0
 
 (∤)   ∷ Integral a ⇒ a → a → Bool
-(∤)   = (not .) . (∣)
+(∤)   = (not ∘) ∘ (∣)
 
 π     ∷ Floating a ⇒ a
 π     = pi
@@ -78,13 +91,19 @@ a ∣ b = a % b == 0
 (⊇)   = flip isInfixOf
 
 (⊈)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊈)   = (not .) . isInfixOf
+(⊈)   = (not ∘) ∘ isInfixOf
 
 (⊉)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊉)   = (not .) . flip isInfixOf
+(⊉)   = (not ∘) ∘ flip isInfixOf
 
 (⊂)   ∷ Eq a ⇒ [a] → [a] → Bool
 a ⊂ b = (a ⊆ b) ∧ (a ≠ b)
 
 (⊃)   ∷ Eq a ⇒ [a] → [a] → Bool
 a ⊃ b = (a ⊇ b) ∧ (a ≠ b)
+
+(⊄)   ∷ Eq a ⇒ [a] → [a] → Bool
+(⊄)   = (not ∘) ∘ (⊂)
+
+(⊅)   ∷ Eq a ⇒ [a] → [a] → Bool
+(⊅)   = (not ∘) ∘ (⊃)
