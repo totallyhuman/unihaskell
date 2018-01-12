@@ -26,145 +26,166 @@ infix 5 ∩, ∪, ∖
 infix 4 ≡, ≢, ≠, ≤, ≥, ∣, ∤, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
 
 -- Logical AND
-(∧)   ∷ Bool → Bool → Bool
-(∧)   = (&&)
+(∧)       ∷ Bool → Bool → Bool
+(∧)       = (&&)
 
 -- Logical OR
-(∨)   ∷ Bool → Bool → Bool
-(∨)   = (||)
+(∨)       ∷ Bool → Bool → Bool
+(∨)       = (||)
 
 -- Logical XOR
-(⊕)   ∷ Bool → Bool → Bool
-a ⊕ b = (a ∨ b) ∧ (a ⊼ b)
+(⊕)       ∷ Bool → Bool → Bool
+a ⊕ b     = (a ∨ b) ∧ (a ⊼ b)
 
 -- Logical XNOR
-(⊙)   ∷ Bool → Bool → Bool
-a ⊙ b = (a ∧ b) ∨ (not a ∧ not b)
+(⊙)       ∷ Bool → Bool → Bool
+a ⊙ b     = (a ∧ b) ∨ (a ⊽ b)
 
 -- Logical NAND
-(⊼)   ∷ Bool → Bool → Bool
-a ⊼ b = not (a ∧ b)
+(⊼)       ∷ Bool → Bool → Bool
+a ⊼ b     = not (a ∧ b)
 
 -- Logical NOR
-(⊽)   ∷ Bool → Bool → Bool
-a ⊽ b = not (a ∨ b)
+(⊽)       ∷ Bool → Bool → Bool
+a ⊽ b     = not (a ∨ b)
 
 -- Equal to
-(≡)   ∷ Eq a ⇒ a → a → Bool
-(≡)   = (==)
+(≡)       ∷ Eq a ⇒ a → a → Bool
+(≡)       = (==)
 
 -- Not equal to
-(≢)   ∷ Eq a ⇒ a → a → Bool
-(≢)   = (/=)
+(≢)       ∷ Eq a ⇒ a → a → Bool
+(≢)       = (/=)
 
 -- Not equal to
-(≠)   ∷ Eq a ⇒ a → a → Bool
-(≠)   = (/=)
+(≠)       ∷ Eq a ⇒ a → a → Bool
+(≠)       = (/=)
 
 -- Less than or equal to
-(≤)   ∷ Ord a ⇒ a → a → Bool
-(≤)   = (<=)
+(≤)       ∷ Ord a ⇒ a → a → Bool
+(≤)       = (<=)
 
 -- Greater than or equal to
-(≥)   ∷ Ord a ⇒ a → a → Bool
-(≥)   = (>=)
+(≥)       ∷ Ord a ⇒ a → a → Bool
+(≥)       = (>=)
 
 -- Multiplication
-(×)   ∷ Num a ⇒ a → a → a
-(×)   = (*)
+(×)       ∷ Num a ⇒ a → a → a
+(×)       = (*)
 
 -- Division
-(÷)   ∷ Fractional a ⇒ a → a → a
-(÷)   = (/)
+(÷)       ∷ Fractional a ⇒ a → a → a
+(÷)       = (/)
 
 -- Integer division
-(//)  ∷ Integral a ⇒ a → a → a
-(//)  = div
+(//)      ∷ Integral a ⇒ a → a → a
+(//)      = div
 
 -- Modulo
-(%)   ∷ Integral a ⇒ a → a → a
-(%)   = mod
+(%)       ∷ Integral a ⇒ a → a → a
+(%)       = mod
 
 -- Divisible by
-(∣)   ∷ Integral a ⇒ a → a → Bool
-a ∣ b = a % b ≡ 0
+(∣)       ∷ Integral a ⇒ a → a → Bool
+a ∣ b     = a % b ≡ 0
 
 -- Not divisible by
-(∤)   ∷ Integral a ⇒ a → a → Bool
-(∤)   = (not ∘) ∘ (∣)
+(∤)       ∷ Integral a ⇒ a → a → Bool
+(∤)       = (not ∘) ∘ (∣)
 
 -- Pi
-π     ∷ Floating a ⇒ a
-π     = pi
+π         ∷ Floating a ⇒ a
+π         = pi
 
 -- Function composition
-(∘)   ∷ (b → c) → (a → b) → a → c
-(∘)   = (.)
+(∘)       ∷ (b → c) → (a → b) → a → c
+(∘)       = (.)
 
 -- List concatenation
-(⋅)   ∷ [a] → [a] → [a]
-(⋅)   = (++)
+(⋅)       ∷ [a] → [a] → [a]
+(⋅)       = (++)
 
 -- List index
-(‼)   ∷ [a] → Int → a
-(‼)   = (!!)
+(‼)       ∷ [a] → Int → a
+(‼)       = (!!)
 
 -- Element of
-(∈)   ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
-(∈)   = elem
+(∈)       ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
+(∈)       = elem
 
--- Not and element of
-(∉)   ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
-(∉)   = notElem
+-- Not an element of
+(∉)       ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
+(∉)       = notElem
 
 -- Contains
-(∋)   ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∋)   = flip (∈)
+(∋)       ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
+(∋)       = flip (∈)
 
 -- Does not contain
-(∌)   ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∌)   = flip (∉)
+(∌)       ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
+(∌)       = flip (∉)
 
 -- Intersection
-(∩)   ∷ Eq a ⇒ [a] → [a] → [a]
-(∩)   = intersect
+(∩)       ∷ Eq a ⇒ [a] → [a] → [a]
+(∩)       = intersect
 
 -- Union
-(∪)   ∷ Eq a ⇒ [a] → [a] → [a]
-(∪)   = union
+(∪)       ∷ Eq a ⇒ [a] → [a] → [a]
+(∪)       = union
 
 -- Set subtraction
-(∖)   ∷ Eq a ⇒ [a] → [a] → [a]
-(∖)   = (\\)
+(∖)       ∷ Eq a ⇒ [a] → [a] → [a]
+(∖)       = (\\)
 
 -- Subset of or equal to
-(⊆)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊆)   = isInfixOf
+(⊆)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊆)       = isInfixOf
 
 -- Superset of or equal to
-(⊇)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊇)   = flip isInfixOf
+(⊇)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊇)       = flip isInfixOf
 
 -- Not subset of or equal to
-(⊈)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊈)   = (not ∘) ∘ (⊆)
+(⊈)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊈)       = (not ∘) ∘ (⊆)
 
 -- Not superset of or equal to
-(⊉)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊉)   = (not ∘) ∘ (⊇)
+(⊉)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊉)       = (not ∘) ∘ (⊇)
 
 -- Subset of
-(⊂)   ∷ Eq a ⇒ [a] → [a] → Bool
-a ⊂ b = (a ⊆ b) ∧ (a ≠ b)
+(⊂)       ∷ Eq a ⇒ [a] → [a] → Bool
+a ⊂ b     = (a ⊆ b) ∧ (a ≠ b)
 
 -- Superset of
-(⊃)   ∷ Eq a ⇒ [a] → [a] → Bool
-a ⊃ b = (a ⊇ b) ∧ (a ≠ b)
+(⊃)       ∷ Eq a ⇒ [a] → [a] → Bool
+a ⊃ b     = (a ⊇ b) ∧ (a ≠ b)
 
 -- Not subset of
-(⊄)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊄)   = (not ∘) ∘ (⊂)
+(⊄)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊄)       = (not ∘) ∘ (⊂)
 
 -- Not superset of
-(⊅)   ∷ Eq a ⇒ [a] → [a] → Bool
-(⊅)   = (not ∘) ∘ (⊃)
+(⊅)       ∷ Eq a ⇒ [a] → [a] → Bool
+(⊅)       = (not ∘) ∘ (⊃)
+
+-- Primality
+isPrime   ∷ Int → Bool
+isPrime 2 = True
+isPrime 3 = True
+isPrime n
+    | (n ∣ 2) ∨ (n ∣ 3) = False
+    | otherwise         = check 5 2
+  where check i w
+            | i × i ≤ n = if n ∣ i
+                          then False
+                          else check (i + w) (6 - w)
+            | otherwise = True
+
+-- Infinite list of primes
+primes    ∷ [Int]
+primes    = filter isPrime [1..]
+
+-- Nth prime (0-indexed)
+prime     ∷ Int → Int
+prime     = (primes !!)
