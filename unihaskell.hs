@@ -1,4 +1,3 @@
-
 {-# LANGUAGE UnicodeSyntax #-}
 
 module UniHaskell
@@ -162,7 +161,7 @@ a ⊂ b     = (a ⊆ b) ∧ (a ≠ b)
 
 -- Superset of
 (⊃)       ∷ Eq a ⇒ [a] → [a] → Bool
-a ⊃ b     = flip (⊂)
+(⊃)       = flip (⊂)
 
 -- Not subset of
 (⊄)       ∷ Eq a ⇒ [a] → [a] → Bool
