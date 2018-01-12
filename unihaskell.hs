@@ -196,6 +196,10 @@ prime     = (primes ‼)
 fibList   ∷ [Int]
 fibList   = 0 : 1 : zipWith (+) fibList (drop 1 fibList)
 
--- Nth Fibonacci number
+-- Nth Fibonacci number (0-indexed)
 fib       ∷ Int → Int
 fib       = (fibList ‼)
+
+-- In Fibonacci sequence
+isFib     ∷ Int → Bool
+isFib n   = head (dropWhile (< n) fibList) ≡ n
