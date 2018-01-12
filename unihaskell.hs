@@ -1,3 +1,4 @@
+
 {-# LANGUAGE UnicodeSyntax #-}
 
 module UniHaskell
@@ -12,7 +13,7 @@ module UniHaskell
     , (∈), (∉), (∋), (∌)
     , (∣), (∤)
     , isPrime, prime, primes
-    , isFib, fib, fibList
+    , fib, fibList
     ) where
 
 import Data.List
@@ -145,7 +146,7 @@ a ∣ b     = a % b ≡ 0
 
 -- Superset of or equal to
 (⊇)       ∷ Eq a ⇒ [a] → [a] → Bool
-(⊇)       = flip isInfixOf
+(⊇)       = flip (⊆)
 
 -- Not subset of or equal to
 (⊈)       ∷ Eq a ⇒ [a] → [a] → Bool
@@ -153,7 +154,7 @@ a ∣ b     = a % b ≡ 0
 
 -- Not superset of or equal to
 (⊉)       ∷ Eq a ⇒ [a] → [a] → Bool
-(⊉)       = (not ∘) ∘ (⊇)
+(⊉)       = flip (⊈)
 
 -- Subset of
 (⊂)       ∷ Eq a ⇒ [a] → [a] → Bool
@@ -161,7 +162,7 @@ a ⊂ b     = (a ⊆ b) ∧ (a ≠ b)
 
 -- Superset of
 (⊃)       ∷ Eq a ⇒ [a] → [a] → Bool
-a ⊃ b     = (a ⊇ b) ∧ (a ≠ b)
+a ⊃ b     = flip (⊂)
 
 -- Not subset of
 (⊄)       ∷ Eq a ⇒ [a] → [a] → Bool
@@ -169,7 +170,7 @@ a ⊃ b     = (a ⊇ b) ∧ (a ≠ b)
 
 -- Not superset of
 (⊅)       ∷ Eq a ⇒ [a] → [a] → Bool
-(⊅)       = (not ∘) ∘ (⊃)
+(⊅)       = flip (⊄)
 
 -- Primality
 isPrime   ∷ Int → Bool
@@ -199,7 +200,3 @@ fibList   = 0 : 1 : zipWith (+) fibList (drop 1 fibList)
 -- Nth Fibonacci number
 fib       ∷ Int → Int
 fib       = (fibList ‼)
-
--- In Fibonacci sequence
-isFib     ∷ Int → Bool
-isFib     = (fibList ∋)
