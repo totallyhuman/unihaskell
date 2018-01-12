@@ -12,6 +12,7 @@ module UniHaskell
     , (∈), (∉), (∋), (∌)
     , (∣), (∤)
     , isPrime, prime, primes
+    , isFib, fib, fibList
     ) where
 
 import Data.List
@@ -189,4 +190,16 @@ primes    = filter isPrime [1..]
 
 -- Nth prime (0-indexed)
 prime     ∷ Int → Int
-prime     = (primes !!)
+prime     = (primes ‼)
+
+-- Infinite Fibonacci list [0, 1, 1, 2...]
+fibList   ∷ [Int]
+fibList   = 0 : 1 : zipWith (+) fibList (drop 1 fibList)
+
+-- Nth Fibonacci number
+fib       ∷ Int → Int
+fib       = (fibList ‼)
+
+-- In Fibonacci sequence
+isFib     ∷ Int → Bool
+isFib     = (fibList ∋)
