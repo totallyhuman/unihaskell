@@ -11,6 +11,7 @@ module UniHaskell
     , (⊆), (⊇), (⊈), (⊉), (⊂), (⊃), (⊄), (⊅)
     , (∈), (∉), (∋), (∌)
     , (∣), (∤)
+    , isPrime, prime, primes
     ) where
 
 import Data.List
