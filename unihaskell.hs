@@ -1,19 +1,6 @@
 {-# LANGUAGE UnicodeSyntax #-}
 
-module UniHaskell
-    ( (∧), (∨), (⊕), (⊙), (⊼), (⊽)
-    , (≡), (≢), (≠)
-    , (≤), (≥)
-    , π
-    , (÷), (×), (%), (//)
-    , (∘)
-    , (‼), (⋅), (∩), (∪), (∖)
-    , (⊆), (⊇), (⊈), (⊉), (⊂), (⊃), (⊄), (⊅)
-    , (∈), (∉), (∋), (∌)
-    , (∣), (∤)
-    , isPrime, prime, primes
-    , fib, fibList
-    ) where
+module UniHaskell where
 
 import Data.List
 
@@ -86,6 +73,9 @@ a ⊽ b     = not (a ∨ b)
 -- Modulo
 (%)       ∷ Integral a ⇒ a → a → a
 (%)       = mod
+
+(…)      ∷ Enum a ⇒ a → a → [a]
+(…)      = enumFromTo
 
 -- Divisible by
 (∣)       ∷ Integral a ⇒ a → a → Bool
@@ -203,3 +193,7 @@ fib       = (fibList ‼)
 -- In Fibonacci sequence
 isFib     ∷ Int → Bool
 isFib n   = head (dropWhile (< n) fibList) ≡ n
+
+-- Deltas of a list
+deltas    ∷ Num a ⇒ [a] → [a]
+deltas l  = zipWith (-) (tail l) l
