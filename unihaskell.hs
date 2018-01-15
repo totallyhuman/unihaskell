@@ -184,7 +184,7 @@ prime     = (primes ‼)
 
 -- Infinite Fibonacci list [0, 1, 1, 2...]
 fibList   ∷ [Int]
-fibList   = 0 : 1 : zipWith (+) fibList (drop 1 fibList)
+fibList   = 0 : 1 : zipWith (+) fibList (tail fibList)
 
 -- Nth Fibonacci number (0-indexed)
 fib       ∷ Int → Int
