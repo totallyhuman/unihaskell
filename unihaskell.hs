@@ -75,6 +75,7 @@ a ⊽ b     = not (a ∨ b)
 (%)       ∷ Integral a ⇒ a → a → a
 (%)       = mod
 
+-- Range
 (…)       ∷ Enum a ⇒ a → a → [a]
 (…)       = enumFromTo
 
