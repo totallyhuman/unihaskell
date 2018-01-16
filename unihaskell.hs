@@ -12,7 +12,7 @@ infixr 9 ∘
 infixr 5 ⋅
 infixr 3 ∧, ∨, ⊕, ⊙, ⊼, ⊽
 
-infix 5 ∩, ∪, ∖
+infix 5 ∩, ∪, ∖, ⊗
 infix 4 ≡, ≢, ≠, ≤, ≥, ∣, ∤, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
 
 -- Logical AND
