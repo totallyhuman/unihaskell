@@ -136,7 +136,7 @@ a ∣ b     = a % b ≡ 0
 
 -- Subset of or equal to
 (⊆)       ∷ Eq a ⇒ [a] → [a] → Bool
-(⊆)       = isInfixOf
+(⊆)       = isSubsequenceOf
 
 -- Superset of or equal to
 (⊇)       ∷ Eq a ⇒ [a] → [a] → Bool
