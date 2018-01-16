@@ -74,8 +74,8 @@ a ⊽ b     = not (a ∨ b)
 (%)       ∷ Integral a ⇒ a → a → a
 (%)       = mod
 
-(…)      ∷ Enum a ⇒ a → a → [a]
-(…)      = enumFromTo
+(…)       ∷ Enum a ⇒ a → a → [a]
+(…)       = enumFromTo
 
 -- Divisible by
 (∣)       ∷ Integral a ⇒ a → a → Bool
@@ -100,6 +100,10 @@ a ∣ b     = a % b ≡ 0
 -- List index
 (‼)       ∷ [a] → Int → a
 (‼)       = (!!)
+
+-- fmap
+(§)       ∷ Functor f ⇒ (a → b) → f a → f b
+(§)       = fmap
 
 -- Element of
 (∈)       ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
