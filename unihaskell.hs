@@ -6,6 +6,7 @@ import Data.List
 
 infixl 9 ‼
 infixl 7 ×, ÷, %, //
+infixl 4 §
 
 infixr 9 ∘
 infixr 5 ⋅
