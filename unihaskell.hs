@@ -122,6 +122,10 @@ a ∣ b     = a % b ≡ 0
 (∌)       ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
 (∌)       = flip (∉)
 
+-- Cartesian product
+(⊗)       ∷ [a] → [b] → [(a, b)]
+a ⊗ b     = [(x, y) | x ← a, y ← b]
+
 -- Intersection
 (∩)       ∷ Eq a ⇒ [a] → [a] → [a]
 (∩)       = intersect
