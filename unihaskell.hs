@@ -8,7 +8,7 @@ Description : Convenience/golfing library
 Copyright   : (c) Sumant Bhaskaruni, 2018
 License     : MIT
 Maintainer  : bsumantb@gmail.com
-Stability   : experimental
+Stability   : stable
 
 A convenience library for Haskell that also functions as a golfing library.
 -}
@@ -98,13 +98,14 @@ a ⊽ b     = not (a ∨ b)
 
 -- | @a … b@ returns a range from @a@ to @b@.
 (…)       ∷ Enum a ⇒ a → a → [a]
-(…)       = enumFromTo
+a … b     | b ≥ a     = [a .. b]
+          | otherwise = [b .. a]
 
--- | @a ∣ b@ returns whether @a@ divides @b@, or @b % a = 0@.
+-- | @a ∣ b@ returns whether @a@ evenly divides @b@, or @b % a = 0@.
 (∣)       ∷ Integral a ⇒ a → a → Bool
 a ∣ b     = b % a ≡ 0
 
--- | @a ∤ b@ returns whether @a@ does not divide @b@, or @b % a ≠ 0@.
+-- | @a ∤ b@ returns whether @a@ does not evenly divide @b@, or @b % a ≠ 0@.
 (∤)       ∷ Integral a ⇒ a → a → Bool
 (∤)       = (not ∘) ∘ (∣)
 
