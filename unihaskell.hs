@@ -1,4 +1,17 @@
+#!/usr/bin/env ghc
+
 {-# LANGUAGE UnicodeSyntax #-}
+
+{-|
+Module      : UniHaskell
+Description : Convenience/golfing library
+Copyright   : (c) Sumant Bhaskaruni, 2018
+License     : MIT
+Maintainer  : bsumantb@gmail.com
+Stability   : experimental
+
+A convenience library for Haskell that also functions as a golfing library.
+-}
 
 module UniHaskell where
 
@@ -15,171 +28,171 @@ infixr 3 ∧, ∨, ⊕, ⊙, ⊼, ⊽
 infix 5 ∩, ∪, ∖, ⊗
 infix 4 ≡, ≢, ≠, ≤, ≥, ∣, ∤, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
 
--- Constant function
+-- | @a ⊷ b@ returns the first argument, or @a@.
 (⊷)       ∷ a → b → a
 a ⊷ b     = a
 
--- Flipped constant function
+-- | @a ⊶ b@ returns the second argument, or @b@.
 (⊶)       ∷ a → b → b
 a ⊶ b     = b
 
--- Logical AND
+-- | @a ∧ b@ returns the logical AND of @a@ and @b@.
 (∧)       ∷ Bool → Bool → Bool
 (∧)       = (&&)
 
--- Logical OR
+-- | @a ∨ b@ returns the logical OR of @a@ and @b@.
 (∨)       ∷ Bool → Bool → Bool
 (∨)       = (||)
 
--- Logical XOR
+-- | @a ⊕ b@ returns the logical XOR of @a@ and @b@.
 (⊕)       ∷ Bool → Bool → Bool
 a ⊕ b     = (a ∨ b) ∧ (a ⊼ b)
 
--- Logical XNOR
+-- | @a ⊙ b@ returns the logical XNOR of @a@ and @b@.
 (⊙)       ∷ Bool → Bool → Bool
 a ⊙ b     = (a ∧ b) ∨ (a ⊽ b)
 
--- Logical NAND
+-- | @a ⊼ b@ returns the logical NAND of @a@ and @b@.
 (⊼)       ∷ Bool → Bool → Bool
 a ⊼ b     = not (a ∧ b)
 
--- Logical NOR
+-- | @a ⊽ b@ returns the logical NOR of @a@ and @b@.
 (⊽)       ∷ Bool → Bool → Bool
 a ⊽ b     = not (a ∨ b)
 
--- Equal to
+-- | @a ≡ b@ returns whether @a@ is equal to @b@.
 (≡)       ∷ Eq a ⇒ a → a → Bool
 (≡)       = (==)
 
--- Not equal to
+-- | @a ≢ b@ returns whether @a@ is inequal to @b@.
 (≢)       ∷ Eq a ⇒ a → a → Bool
 (≢)       = (/=)
 
--- Not equal to
+-- | @a ≠ b@ returns whether @a@ is inequal to @b@.
 (≠)       ∷ Eq a ⇒ a → a → Bool
 (≠)       = (/=)
 
--- Less than or equal to
+-- | @a ≤ b@ returns whether @a@ is lesser than or equal to @b@.
 (≤)       ∷ Ord a ⇒ a → a → Bool
 (≤)       = (<=)
 
--- Greater than or equal to
+-- | @a ≥ b@ returns whether @a@ is greater than or equal to @b@.
 (≥)       ∷ Ord a ⇒ a → a → Bool
 (≥)       = (>=)
 
--- Multiplication
+-- | @a × b@ returns @a@ multiplied by @b@.
 (×)       ∷ Num a ⇒ a → a → a
 (×)       = (*)
 
--- Division
+-- | @a ÷ b@ returns @a@ divided by @b@.
 (÷)       ∷ Fractional a ⇒ a → a → a
 (÷)       = (/)
 
--- Integer division
+-- | @a // b@ returns @a@ floor divided by @b@.
 (//)      ∷ Integral a ⇒ a → a → a
 (//)      = div
 
--- Modulo
+-- | @a % b@ returns @a@ modulo @b@.
 (%)       ∷ Integral a ⇒ a → a → a
 (%)       = mod
 
--- Range
+-- | @a … b@ returns a range from @a@ to @b@.
 (…)       ∷ Enum a ⇒ a → a → [a]
 (…)       = enumFromTo
 
--- Divisible by
+-- | @a ∣ b@ returns whether @a@ divides @b@, or @b % a = 0@.
 (∣)       ∷ Integral a ⇒ a → a → Bool
 a ∣ b     = b % a ≡ 0
 
--- Not divisible by
+-- | @a ∤ b@ returns whether @a@ does not divide @b@, or @b % a ≠ 0@.
 (∤)       ∷ Integral a ⇒ a → a → Bool
 (∤)       = (not ∘) ∘ (∣)
 
--- Pi
+-- | @π@ is a floating-point representation of pi.
 π         ∷ Floating a ⇒ a
 π         = pi
 
--- Function composition
+-- | @f ∘ g@ returns @f@ composed with @g@.
 (∘)       ∷ (b → c) → (a → b) → a → c
 (∘)       = (.)
 
--- List concatenation
+-- | @xs ⋅ ys@ returns @xs@ concatenated with @ys@.
 (⋅)       ∷ [a] → [a] → [a]
 (⋅)       = (++)
 
--- List index
+-- | @xs ‼ n@ returns the @n@th element (0-indexed) of @xs@.
 (‼)       ∷ [a] → Int → a
 (‼)       = (!!)
 
--- fmap
+-- | @f § x@ returns @f@ mapped over @x@.
 (§)       ∷ Functor f ⇒ (a → b) → f a → f b
 (§)       = fmap
 
--- Element of
+-- | @x ∈ xs@ returns whether @x@ is an element of @xs@.
 (∈)       ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
 (∈)       = elem
 
--- Not an element of
+-- | @x ∉ xs@ returns whether @x@ is not an element of @xs@.
 (∉)       ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
 (∉)       = notElem
 
--- Contains
+-- | @xs ∋ x@ returns whether @xs@ contains @x@.
 (∋)       ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
 (∋)       = flip (∈)
 
--- Does not contain
+-- | @xs ∌ x@ returns whether @xs@ doesn't contain @x@.
 (∌)       ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
 (∌)       = flip (∉)
 
--- Cartesian product
+-- | @xs ⊗ ys@ returns the cartesian product of @xs@ and @ys@.
 (⊗)       ∷ [a] → [b] → [(a, b)]
 a ⊗ b     = [(x, y) | x ← a, y ← b]
 
--- Intersection
+-- | @xs ∩ ys@ returns the intersection of @xs@ and @ys@.
 (∩)       ∷ Eq a ⇒ [a] → [a] → [a]
 (∩)       = intersect
 
--- Union
+-- | @xs ∪ ys@ returns the union of @xs@ and @ys@.
 (∪)       ∷ Eq a ⇒ [a] → [a] → [a]
 (∪)       = union
 
--- Set subtraction
+-- | @xs ∖ ys@ returns the set minus of @xs@ and @ys@.
 (∖)       ∷ Eq a ⇒ [a] → [a] → [a]
 (∖)       = (\\)
 
--- Subset of or equal to
+-- | @xs ⊆ ys@ returns whether @xs@ is a subset of or equal to @ys@.
 (⊆)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊆)       = isSubsequenceOf
 
--- Superset of or equal to
+-- | @xs ⊇ ys@ returns whether @xs@ is a superset of or equal to @ys@.
 (⊇)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊇)       = flip (⊆)
 
--- Not subset of or equal to
+-- | @xs ⊈ ys@ returns whether @xs@ is not a subset of or equal to @ys@.
 (⊈)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊈)       = (not ∘) ∘ (⊆)
 
--- Not superset of or equal to
+-- | @xs ⊉ ys@ returns whether @xs@ is not a superset of or equal to @ys@.
 (⊉)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊉)       = flip (⊈)
 
--- Subset of
+-- | @xs ⊂ ys@ returns whether @xs@ is a subset of @ys@.
 (⊂)       ∷ Eq a ⇒ [a] → [a] → Bool
 a ⊂ b     = (a ⊆ b) ∧ (a ≠ b)
 
--- Superset of
+-- | @xs ⊃ ys@ returns whether @xs@ is a superset of @ys@.
 (⊃)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊃)       = flip (⊂)
 
--- Not subset of
+-- | @xs ⊄ ys@ returns whether @xs@ is not a subset of @ys@.
 (⊄)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊄)       = (not ∘) ∘ (⊂)
 
--- Not superset of
+-- | @xs ⊅ ys@ returns whether @xs@ is not a superset of @ys@.
 (⊅)       ∷ Eq a ⇒ [a] → [a] → Bool
 (⊅)       = flip (⊄)
 
--- Primality
+-- | @isPrime n@ returns whether @n@ is prime.
 isPrime   ∷ Int → Bool
 isPrime 2 = True
 isPrime 3 = True
@@ -188,29 +201,29 @@ isPrime n
     | otherwise         = check 5 2
   where check i w
             | i × i > n = True
-            | i ∣ n    = False
+            | i ∣ n     = False
             | otherwise = check (i + w) (6 - w)
 
--- Infinite list of primes
+-- | @primes@ is an infinite list of prime numbers.
 primes    ∷ [Int]
 primes    = filter isPrime [1..]
 
--- Nth prime (0-indexed)
+-- | @prime n@ returns the @n@th (0-indexed) prime number.
 prime     ∷ Int → Int
 prime     = (primes ‼)
 
--- Infinite Fibonacci list [0, 1, 1, 2...]
+-- | @fibList@ is an infinite list of Fibonacci numbers (@[0, 1, 1, 2...]@).
 fibList   ∷ [Int]
 fibList   = 0 : 1 : zipWith (+) fibList (tail fibList)
 
--- Nth Fibonacci number (0-indexed)
+-- | @fib n@ returns the @n@th (0-indexed) Fibonacci number.
 fib       ∷ Int → Int
 fib       = (fibList ‼)
 
--- In Fibonacci sequence
+-- | @isFib n@ returns whether @n@ is a Fibonacci number.
 isFib     ∷ Int → Bool
 isFib n   = head (dropWhile (< n) fibList) ≡ n
 
--- Deltas of a list
+-- | @deltas xs@ returns the deltas of @xs@.
 deltas    ∷ Num a ⇒ [a] → [a]
 deltas l  = zipWith (-) (tail l) l
