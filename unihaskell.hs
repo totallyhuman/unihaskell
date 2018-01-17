@@ -193,7 +193,7 @@ a ⊂ b     = (a ⊆ b) ∧ (a ≠ b)
 (⊅)       = flip (⊄)
 
 -- | @isPrime n@ returns whether @n@ is prime.
-isPrime   ∷ Int → Bool
+isPrime   ∷ Integral a ⇒ a → Bool
 isPrime 2 = True
 isPrime 3 = True
 isPrime n
@@ -205,23 +205,23 @@ isPrime n
             | otherwise = check (i + w) (6 - w)
 
 -- | @primes@ is an infinite list of prime numbers.
-primes    ∷ [Int]
+primes    ∷ Integral a ⇒ [a]
 primes    = filter isPrime [1..]
 
 -- | @prime n@ returns the @n@th (0-indexed) prime number.
-prime     ∷ Int → Int
+prime     ∷ Integral a ⇒ Int → a
 prime     = (primes ‼)
 
 -- | @fibList@ is an infinite list of Fibonacci numbers (@[0, 1, 1, 2...]@).
-fibList   ∷ [Int]
+fibList   ∷ Integral a ⇒ [a]
 fibList   = 0 : 1 : zipWith (+) fibList (tail fibList)
 
 -- | @fib n@ returns the @n@th (0-indexed) Fibonacci number.
-fib       ∷ Int → Int
+fib       ∷ Integral a ⇒ Int → a
 fib       = (fibList ‼)
 
 -- | @isFib n@ returns whether @n@ is a Fibonacci number.
-isFib     ∷ Int → Bool
+isFib     ∷ Integral a ⇒ a → Bool
 isFib n   = head (dropWhile (< n) fibList) ≡ n
 
 -- | @deltas xs@ returns the deltas of @xs@.
