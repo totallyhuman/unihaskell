@@ -15,11 +15,13 @@ infixr 3 ∧, ∨, ⊕, ⊙, ⊼, ⊽
 infix 5 ∩, ∪, ∖, ⊗
 infix 4 ≡, ≢, ≠, ≤, ≥, ∣, ∤, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
 
+-- Constant function
 (⊷)       ∷ a → b → a
-(⊷)       = const
+a ⊷ b     = a
 
+-- Flipped constant function
 (⊶)       ∷ a → b → b
-(⊶)       = flip const
+a ⊶ b     = b
 
 -- Logical AND
 (∧)       ∷ Bool → Bool → Bool
