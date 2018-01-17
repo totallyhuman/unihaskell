@@ -81,7 +81,7 @@ a ⊽ b     = not (a ∨ b)
 
 -- Divisible by
 (∣)       ∷ Integral a ⇒ a → a → Bool
-a ∣ b     = a % b ≡ 0
+a ∣ b     = b % a ≡ 0
 
 -- Not divisible by
 (∤)       ∷ Integral a ⇒ a → a → Bool
@@ -176,13 +176,12 @@ isPrime   ∷ Int → Bool
 isPrime 2 = True
 isPrime 3 = True
 isPrime n
-    | (n ∣ 2) ∨ (n ∣ 3) = False
+    | (2 ∣ n) ∨ (3 ∣ n) = False
     | otherwise         = check 5 2
   where check i w
-            | i × i ≤ n = if n ∣ i
-                          then False
-                          else check (i + w) (6 - w)
-            | otherwise = True
+            | i × i > n = True
+            | i ∣ n    = False
+            | otherwise = check (i + w) (6 - w)
 
 -- Infinite list of primes
 primes    ∷ [Int]
