@@ -15,6 +15,7 @@ A convenience library for Haskell that also functions as a golfing library.
 
 module UniHaskell where
 
+import Data.Bits
 import Data.List
 
 infixl 9 ‼
@@ -54,11 +55,11 @@ a ⊙ b     = (a ∧ b) ∨ (a ⊽ b)
 
 -- | @a ⊼ b@ returns the logical NAND of @a@ and @b@.
 (⊼)       ∷ Bool → Bool → Bool
-a ⊼ b     = not (a ∧ b)
+a ⊼ b     = (not ∘) ∘ (∧)
 
 -- | @a ⊽ b@ returns the logical NOR of @a@ and @b@.
 (⊽)       ∷ Bool → Bool → Bool
-a ⊽ b     = not (a ∨ b)
+a ⊽ b     = (not ∘) ∘ (∨)
 
 -- | @a ≡ b@ returns whether @a@ is equal to @b@.
 (≡)       ∷ Eq a ⇒ a → a → Bool
@@ -96,10 +97,25 @@ a ⊽ b     = not (a ∨ b)
 (%)       ∷ Integral a ⇒ a → a → a
 (%)       = mod
 
--- | @a … b@ returns a range from @a@ to @b@.
-(…)       ∷ Enum a ⇒ a → a → [a]
-a … b     | b ≥ a     = [a .. b]
-          | otherwise = [b .. a]
+-- | @a ⋏ b@ returns the bitwise AND of @a@ and @b@.
+(⋏)       ∷ Int → Int → Int
+(⋏)       = (.&.)
+
+-- | @a ⋏ b@ returns the bitwise OR of @a@ and @b@.
+(⋎)       ∷ Int → Int → Int
+(⋎)       = (.|.)
+
+-- | @a ≪ b@ returns @a@ with its bits shifted left by @b@ places.
+(≪)       ∷ Int → Int → Int
+(≪)       = shiftL
+
+-- | @a ≫ b@ returns @a@ with its bits shifted right by @b@ places.
+(≫)       ∷ Int → Int → Int
+(≫)       = shiftR
+
+-- | @a ⋏ b@ returns the bitwise XOR of @a@ and @b@.
+(⊻)       ∷ Int → Int → Int
+(⊻)       = xor
 
 -- | @a ∣ b@ returns whether @a@ evenly divides @b@, or @b % a = 0@.
 (∣)       ∷ Integral a ⇒ a → a → Bool
@@ -108,6 +124,11 @@ a ∣ b     = b % a ≡ 0
 -- | @a ∤ b@ returns whether @a@ does not evenly divide @b@, or @b % a ≠ 0@.
 (∤)       ∷ Integral a ⇒ a → a → Bool
 (∤)       = (not ∘) ∘ (∣)
+
+-- | @a … b@ returns a range from @a@ to @b@.
+(…)       ∷ Enum a ⇒ a → a → [a]
+a … b     | b ≥ a     = [a .. b]
+          | otherwise = [b .. a]
 
 -- | @π@ is a floating-point representation of pi.
 π         ∷ Floating a ⇒ a
