@@ -113,7 +113,7 @@ a ⊙ b      = (a ∧ b) ∨ (a ⊽ b)
 (≪)        = shiftL
 
 -- | @a ≫ b@ returns @a@ with its bits shifted right by @b@ places.
-(≪, ≫≫)        ∷ Int → Int → Int
+(≫)        ∷ Int → Int → Int
 (≫)        = shiftR
 
 -- | @a ⋏ b@ returns the bitwise XOR of @a@ and @b@.
