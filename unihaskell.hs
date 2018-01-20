@@ -116,7 +116,7 @@ a ⊙ b      = (a ∧ b) ∨ (a ⊽ b)
 (≫)        ∷ Int → Int → Int
 (≫)        = shiftR
 
--- | @a ⋏ b@ returns the bitwise XOR of @a@ and @b@.
+-- | @a ⊻ b@ returns the bitwise XOR of @a@ and @b@.
 (⊻)        ∷ Int → Int → Int
 (⊻)        = xor
 
@@ -259,6 +259,10 @@ fib        = (fibList ‼)
 isFib      ∷ Integral a ⇒ a → Bool
 isFib n    = head (dropWhile (< n) fibList) ≡ n
 
--- | @deltas xs@ returns the deltas of @xs@.
+-- | @deltas xs@ returns the incremental differences of @xs@.
 deltas     ∷ Num a ⇒ [a] → [a]
 deltas l   = zipWith (-) (tail l) l
+
+-- | @find p xs@ finds the first element of @xs@ for which @p@ holds true.
+find       ∷ (a → Bool) → [a] → a
+find       = (head ∘) ∘ dropWhile 
