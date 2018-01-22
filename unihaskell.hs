@@ -16,7 +16,7 @@ A convenience library for Haskell that also functions as a golfing library.
 module UniHaskell where
 
 import Data.Bits
-import Data.List
+import Data.List hiding (find)
 
 infixl 9 ‼
 infixl 8 ≪, ≫
@@ -225,7 +225,7 @@ factors    ∷ Integral a ⇒ a → [a]
 factors n
     | isPrime n = [n]
     | otherwise = i : factors (n // i)
-        where i = head (dropWhile (∤ n) (drop 1 primes))
+        where i = find (∣ n) (tail primes)
 
 -- | @isPrime n@ returns whether @n@ is prime.
 isPrime    ∷ Integral a ⇒ a → Bool
@@ -257,7 +257,7 @@ fib        = (fibList ‼)
 
 -- | @isFib n@ returns whether @n@ is a Fibonacci number.
 isFib      ∷ Integral a ⇒ a → Bool
-isFib n    = head (dropWhile (< n) fibList) ≡ n
+isFib n    = find (>= n) fibList ≡ n
 
 -- | @deltas xs@ returns the incremental differences of @xs@.
 deltas     ∷ Num a ⇒ [a] → [a]
