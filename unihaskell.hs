@@ -33,204 +33,209 @@ infix 5 ∩, ∪, ∖, ⊗
 infix 4 ≡, ≢, ≠, ≤, ≥, ∣, ∤, ∈, ∉, ∋, ∌, ⊆, ⊇, ⊈, ⊉, ⊂, ⊃, ⊄, ⊅
 
 -- | @a ⊷ b@ returns the first argument, or @a@.
-(⊷)        ∷ a → b → a
-a ⊷ b      = a
+(⊷)         ∷ a → b → a
+a ⊷ b       = a
 
 -- | @a ⊶ b@ returns the second argument, or @b@.
-(⊶)        ∷ a → b → b
-a ⊶ b      = b
+(⊶)         ∷ a → b → b
+a ⊶ b       = b
 
 -- | @a ∧ b@ returns the logical AND of @a@ and @b@.
-(∧)        ∷ Bool → Bool → Bool
-(∧)        = (&&)
+(∧)         ∷ Bool → Bool → Bool
+(∧)         = (&&)
 
 -- | @a ∨ b@ returns the logical OR of @a@ and @b@.
-(∨)        ∷ Bool → Bool → Bool
-(∨)        = (||)
+(∨)         ∷ Bool → Bool → Bool
+(∨)         = (||)
 
 -- | @a ⊕ b@ returns the logical XOR of @a@ and @b@.
-(⊕)        ∷ Bool → Bool → Bool
-a ⊕ b      = (a ∨ b) ∧ (a ⊼ b)
+(⊕)         ∷ Bool → Bool → Bool
+a ⊕ b       = (a ∨ b) ∧ (a ⊼ b)
 
 -- | @a ⊙ b@ returns the logical XNOR of @a@ and @b@.
-(⊙)        ∷ Bool → Bool → Bool
-a ⊙ b      = (a ∧ b) ∨ (a ⊽ b)
+(⊙)         ∷ Bool → Bool → Bool
+a ⊙ b       = (a ∧ b) ∨ (a ⊽ b)
 
 -- | @a ⊼ b@ returns the logical NAND of @a@ and @b@.
-(⊼)        ∷ Bool → Bool → Bool
-(⊼)        = (not ∘) ∘ (∧)
+(⊼)         ∷ Bool → Bool → Bool
+(⊼)         = (not ∘) ∘ (∧)
 
 -- | @a ⊽ b@ returns the logical NOR of @a@ and @b@.
-(⊽)        ∷ Bool → Bool → Bool
-(⊽)        = (not ∘) ∘ (∨)
+(⊽)         ∷ Bool → Bool → Bool
+(⊽)         = (not ∘) ∘ (∨)
 
 -- | @a ≡ b@ returns whether @a@ is equal to @b@.
-(≡)        ∷ Eq a ⇒ a → a → Bool
-(≡)        = (==)
+(≡)         ∷ Eq a ⇒ a → a → Bool
+(≡)         = (==)
 
 -- | @a ≢ b@ returns whether @a@ is inequal to @b@.
-(≢)        ∷ Eq a ⇒ a → a → Bool
-(≢)        = (/=)
+(≢)         ∷ Eq a ⇒ a → a → Bool
+(≢)         = (/=)
 
 -- | @a ≠ b@ returns whether @a@ is inequal to @b@.
-(≠)        ∷ Eq a ⇒ a → a → Bool
-(≠)        = (/=)
+(≠)         ∷ Eq a ⇒ a → a → Bool
+(≠)         = (/=)
 
 -- | @a ≤ b@ returns whether @a@ is lesser than or equal to @b@.
-(≤)        ∷ Ord a ⇒ a → a → Bool
-(≤)        = (<=)
+(≤)         ∷ Ord a ⇒ a → a → Bool
+(≤)         = (<=)
 
 -- | @a ≥ b@ returns whether @a@ is greater than or equal to @b@.
-(≥)        ∷ Ord a ⇒ a → a → Bool
-(≥)        = (>=)
+(≥)         ∷ Ord a ⇒ a → a → Bool
+(≥)         = (>=)
 
 -- | @a × b@ returns @a@ multiplied by @b@.
-(×)        ∷ Num a ⇒ a → a → a
-(×)        = (*)
+(×)         ∷ Num a ⇒ a → a → a
+(×)         = (*)
 
 -- | @a ÷ b@ returns @a@ divided by @b@.
-(÷)        ∷ Fractional a ⇒ a → a → a
-(÷)        = (/)
+(÷)         ∷ Fractional a ⇒ a → a → a
+(÷)         = (/)
 
 -- | @a // b@ returns @a@ floor divided by @b@.
-(//)       ∷ Integral a ⇒ a → a → a
-(//)       = div
+(//)        ∷ Integral a ⇒ a → a → a
+(//)        = div
 
 -- | @a % b@ returns @a@ modulo @b@.
-(%)        ∷ Integral a ⇒ a → a → a
-(%)        = mod
+(%)         ∷ Integral a ⇒ a → a → a
+(%)         = mod
 
 -- | @a ⋏ b@ returns the bitwise AND of @a@ and @b@.
-(⋏)        ∷ Int → Int → Int
-(⋏)        = (.&.)
+(⋏)         ∷ Int → Int → Int
+(⋏)         = (.&.)
 
 -- | @a ⋏ b@ returns the bitwise OR of @a@ and @b@.
-(⋎)        ∷ Int → Int → Int
-(⋎)        = (.|.)
+(⋎)         ∷ Int → Int → Int
+(⋎)         = (.|.)
 
 -- | @a ≪ b@ returns @a@ with its bits shifted left by @b@ places.
-(≪)        ∷ Int → Int → Int
-(≪)        = shiftL
+(≪)         ∷ Int → Int → Int
+(≪)         = shiftL
 
 -- | @a ≫ b@ returns @a@ with its bits shifted right by @b@ places.
-(≫)        ∷ Int → Int → Int
-(≫)        = shiftR
+(≫)         ∷ Int → Int → Int
+(≫)         = shiftR
 
 -- | @a ⊻ b@ returns the bitwise XOR of @a@ and @b@.
-(⊻)        ∷ Int → Int → Int
-(⊻)        = xor
+(⊻)         ∷ Int → Int → Int
+(⊻)         = xor
 
 -- | @a ∣ b@ returns whether @a@ evenly divides @b@, or @b % a = 0@.
-(∣)        ∷ Integral a ⇒ a → a → Bool
-a ∣ b      = b % a ≡ 0
+(∣)         ∷ Integral a ⇒ a → a → Bool
+a ∣ b       = b % a ≡ 0
 
 -- | @a ∤ b@ returns whether @a@ does not evenly divide @b@, or @b % a ≠ 0@.
-(∤)        ∷ Integral a ⇒ a → a → Bool
-(∤)        = (not ∘) ∘ (∣)
+(∤)         ∷ Integral a ⇒ a → a → Bool
+(∤)         = (not ∘) ∘ (∣)
 
 -- | @a … b@ returns a range from @a@ to @b@.
-(…)        ∷ (Enum a, Ord a) ⇒ a → a → [a]
-a … b      | b ≥ a     = [a .. b]
-           | otherwise = [b .. a]
+(…)         ∷ (Enum a, Ord a) ⇒ a → a → [a]
+a … b       | b ≥ a     = [a .. b]
+            | otherwise = [b .. a]
 
 -- | @π@ is a floating-point representation of pi.
-π          ∷ Floating a ⇒ a
-π          = pi
+π           ∷ Floating a ⇒ a
+π           = pi
 
 -- | @f ∘ g@ returns @f@ composed with @g@.
-(∘)        ∷ (b → c) → (a → b) → a → c
-(∘)        = (.)
+(∘)         ∷ (b → c) → (a → b) → a → c
+(∘)         = (.)
+
+-- | @xs ⊺ xss@ inserts @xs@ in between the lists in @xss@ and concatenates the
+--   result.
+(⊺)         ∷ [a] → [[a]] → [a]
+(⊺)         = intercalate
 
 -- | @xs ⋅ ys@ returns @xs@ concatenated with @ys@.
-(⋅)        ∷ [a] → [a] → [a]
-(⋅)        = (++)
+(⋅)         ∷ [a] → [a] → [a]
+(⋅)         = (++)
 
 -- | @xs ‼ n@ returns the @n@th element (0-indexed) of @xs@.
-(‼)        ∷ [a] → Int → a
-(‼)        = (!!)
+(‼)         ∷ [a] → Int → a
+(‼)         = (!!)
 
 -- | @f § x@ returns @f@ mapped over @x@.
-(§)        ∷ Functor f ⇒ (a → b) → f a → f b
-(§)        = fmap
+(§)         ∷ Functor f ⇒ (a → b) → f a → f b
+(§)         = fmap
 
 -- | @x ∈ xs@ returns whether @x@ is an element of @xs@.
-(∈)        ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
-(∈)        = elem
+(∈)         ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
+(∈)         = elem
 
 -- | @x ∉ xs@ returns whether @x@ is not an element of @xs@.
-(∉)        ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
-(∉)        = notElem
+(∉)         ∷ (Foldable t, Eq a) ⇒ a → t a → Bool
+(∉)         = notElem
 
 -- | @xs ∋ x@ returns whether @xs@ contains @x@.
-(∋)        ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∋)        = flip (∈)
+(∋)         ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
+(∋)         = flip (∈)
 
 -- | @xs ∌ x@ returns whether @xs@ doesn't contain @x@.
-(∌)        ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
-(∌)        = flip (∉)
+(∌)         ∷ (Foldable t, Eq a) ⇒ t a → a → Bool
+(∌)         = flip (∉)
 
 -- | @xs ⊗ ys@ returns the cartesian product of @xs@ and @ys@.
-(⊗)        ∷ [a] → [b] → [(a, b)]
-a ⊗ b      = [(x, y) | x ← a, y ← b]
+(⊗)         ∷ [a] → [b] → [(a, b)]
+xs ⊗ ys     = [(x, y) | x ← xs, y ← ys]
 
 -- | @xs ∩ ys@ returns the intersection of @xs@ and @ys@.
-(∩)        ∷ Eq a ⇒ [a] → [a] → [a]
-(∩)        = intersect
+(∩)         ∷ Eq a ⇒ [a] → [a] → [a]
+(∩)         = intersect
 
 -- | @xs ∪ ys@ returns the union of @xs@ and @ys@.
-(∪)        ∷ Eq a ⇒ [a] → [a] → [a]
-(∪)        = union
+(∪)         ∷ Eq a ⇒ [a] → [a] → [a]
+(∪)         = union
 
 -- | @xs ∖ ys@ returns the set minus of @xs@ and @ys@.
-(∖)        ∷ Eq a ⇒ [a] → [a] → [a]
-(∖)        = (\\)
+(∖)         ∷ Eq a ⇒ [a] → [a] → [a]
+(∖)         = (\\)
 
 -- | @xs ⊆ ys@ returns whether @xs@ is a subset of or equal to @ys@.
-(⊆)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊆)        = isSubsequenceOf
+(⊆)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊆)         = isSubsequenceOf
 
 -- | @xs ⊇ ys@ returns whether @xs@ is a superset of or equal to @ys@.
-(⊇)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊇)        = flip (⊆)
+(⊇)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊇)         = flip (⊆)
 
 -- | @xs ⊈ ys@ returns whether @xs@ is not a subset of or equal to @ys@.
-(⊈)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊈)        = (not ∘) ∘ (⊆)
+(⊈)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊈)         = (not ∘) ∘ (⊆)
 
 -- | @xs ⊉ ys@ returns whether @xs@ is not a superset of or equal to @ys@.
-(⊉)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊉)        = flip (⊈)
+(⊉)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊉)         = flip (⊈)
 
 -- | @xs ⊂ ys@ returns whether @xs@ is a subset of @ys@.
-(⊂)        ∷ Eq a ⇒ [a] → [a] → Bool
-a ⊂ b      = (a ⊆ b) ∧ (a ≠ b)
+(⊂)         ∷ Eq a ⇒ [a] → [a] → Bool
+a ⊂ b       = (a ⊆ b) ∧ (a ≠ b)
 
 -- | @xs ⊃ ys@ returns whether @xs@ is a superset of @ys@.
-(⊃)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊃)        = flip (⊂)
+(⊃)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊃)         = flip (⊂)
 
 -- | @xs ⊄ ys@ returns whether @xs@ is not a subset of @ys@.
-(⊄)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊄)        = (not ∘) ∘ (⊂)
+(⊄)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊄)         = (not ∘) ∘ (⊂)
 
 -- | @xs ⊅ ys@ returns whether @xs@ is not a superset of @ys@.
-(⊅)        ∷ Eq a ⇒ [a] → [a] → Bool
-(⊅)        = flip (⊄)
+(⊅)         ∷ Eq a ⇒ [a] → [a] → Bool
+(⊅)         = flip (⊄)
 
-divisors   ∷ Integral a ⇒ a → [a]
-divisors n = filter (∣ n) [1..n]
+divisors    ∷ Integral a ⇒ a → [a]
+divisors n  = filter (∣ n) [1..n]
 
 -- | @factors n@ returns the prime factors of @n@.
-factors    ∷ Integral a ⇒ a → [a]
+factors     ∷ Integral a ⇒ a → [a]
 factors n
     | isPrime n = [n]
     | otherwise = i : factors (n // i)
         where i = find (∣ n) (tail primes)
 
 -- | @isPrime n@ returns whether @n@ is prime.
-isPrime    ∷ Integral a ⇒ a → Bool
-isPrime 2  = True
-isPrime 3  = True
+isPrime     ∷ Integral a ⇒ a → Bool
+isPrime 2   = True
+isPrime 3   = True
 isPrime n
     | (2 ∣ n) ∨ (3 ∣ n) = False
     | otherwise         = check 5 2
@@ -240,29 +245,42 @@ isPrime n
             | otherwise = check (i + w) (6 - w)
 
 -- | @primes@ is an infinite list of prime numbers.
-primes     ∷ Integral a ⇒ [a]
-primes     = filter isPrime [1..]
+primes      ∷ Integral a ⇒ [a]
+primes      = filter isPrime [1..]
 
 -- | @prime n@ returns the @n@th (0-indexed) prime number.
-prime      ∷ Integral a ⇒ Int → a
-prime      = (primes ‼)
+prime       ∷ Integral a ⇒ Int → a
+prime       = (primes ‼)
 
 -- | @fibList@ is an infinite list of Fibonacci numbers (@[0, 1, 1, 2...]@).
-fibList    ∷ Integral a ⇒ [a]
-fibList    = 0 : 1 : zipWith (+) fibList (tail fibList)
+fibList     ∷ Integral a ⇒ [a]
+fibList     = 0 : 1 : zipWith (+) fibList (tail fibList)
 
 -- | @fib n@ returns the @n@th (0-indexed) Fibonacci number.
-fib        ∷ Integral a ⇒ Int → a
-fib        = (fibList ‼)
+fib         ∷ Integral a ⇒ Int → a
+fib         = (fibList ‼)
 
 -- | @isFib n@ returns whether @n@ is a Fibonacci number.
-isFib      ∷ Integral a ⇒ a → Bool
-isFib n    = find (>= n) fibList ≡ n
+isFib       ∷ Integral a ⇒ a → Bool
+isFib n     = find (≥ n) fibList ≡ n
 
 -- | @deltas xs@ returns the incremental differences of @xs@.
-deltas     ∷ Num a ⇒ [a] → [a]
-deltas l   = zipWith (-) (tail l) l
+deltas      ∷ Num a ⇒ [a] → [a]
+deltas l    = zipWith (-) (tail l) l
 
 -- | @find p xs@ finds the first element of @xs@ for which @p@ holds true.
-find       ∷ (a → Bool) → [a] → a
-find       = (head ∘) ∘ dropWhile 
+find        ∷ (a → Bool) → [a] → a
+find p xs   = head $ dropWhile (not ∘ p) xs
+
+-- | @decToBin n@ converts @n@, which represents a decimal number, to a string
+--   representing @n@ in binary.
+decToBin    ∷ (Integral a, Show a) ⇒ a → String
+decToBin 0  = "0"
+decToBin 1  = "1"
+decToBin n  = (decToBin $ n // 2) ⋅ (show $ n % 2)
+
+-- | @binToDec x@ converts @x@, which represents a binary number, to an
+--   integral value representing @x@ in decimal.
+binToDec    ∷ (Integral a, Read a) ⇒ String → a
+binToDec "" = 0
+binToDec x  = (read [last x]) + 2 × (binToDec $ init x)
