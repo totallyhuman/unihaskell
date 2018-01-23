@@ -272,15 +272,20 @@ deltas l    = zipWith (-) (tail l) l
 find        ∷ (a → Bool) → [a] → a
 find p xs   = head $ dropWhile (not ∘ p) xs
 
+-- | @bitwiseNot n@ performs bitwise NOT on @n@, or returns @n@'s bitwise
+--   complement.
+bitwiseNot  ∷ Int → Int
+bitwiseNot  = complement
+
 -- | @decToBin n@ converts @n@, which represents a decimal number, to a string
 --   representing @n@ in binary.
 decToBin    ∷ (Integral a, Show a) ⇒ a → String
 decToBin 0  = "0"
 decToBin 1  = "1"
-decToBin n  = (decToBin $ n // 2) ⋅ (show $ n % 2)
+decToBin n  = decToBin (n // 2) ⋅ show (n % 2)
 
 -- | @binToDec x@ converts @x@, which represents a binary number, to an
 --   integral value representing @x@ in decimal.
 binToDec    ∷ (Integral a, Read a) ⇒ String → a
 binToDec "" = 0
-binToDec x  = (read [last x]) + 2 × (binToDec $ init x)
+binToDec x  = 2 × binToDec (init x) + read [last x]
